@@ -1,0 +1,350 @@
+\\ check box
+
+
+package sabarees;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+public class sabaree2
+{
+WebDriver driver;
+
+@Before
+public void setUp()
+{
+System.setProperty("WebDriver.Chrome.Driver","C:\\chromedriver.exe");
+driver = new ChromeDriver();
+driver.get("https://the-internet.herokuapp.com/");
+}
+
+@Test
+public void testTextInput()
+{
+driver.findElement(By.linkText("Inputs")).click();
+WebElement textField = driver.findElement(By.tagName("input"));
+textField.sendKeys("Test input");
+String value = textField.getAttribute("value");
+assertEquals("Test input",value);
+}
+
+@Test
+public void testcheckbox()
+{
+driver.findElement(By.linkText("Checkboxes")).click();
+WebElement Checkbox = driver.findElement(By.xpath("//Input[@type='checkbox'][1]"));
+if (!Checkbox.isSelected())
+{
+Checkbox.click();
+}
+assertTrue(Checkbox.isSelected());
+}
+}
+
+
+
+2.\\html with link
+
+package sabarees;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class sabaree3 {
+    public static void main(String[] args) {
+        // Path to the local HTML file
+        String htmlFilePath = "C:\\Users\\user1.SYS15\\Desktop\\login.html";
+        
+        // Set the system property for the ChromeDriver
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
+
+        try {
+            // Load the local HTML file in the browser
+            driver.get(htmlFilePath);
+
+            // Locate the username and password fields, and submit button
+            WebElement usernameInput = driver.findElement(By.id("username"));
+            usernameInput.sendKeys("testuser");
+            WebElement passwordInput = driver.findElement(By.id("password"));
+            passwordInput.sendKeys("password123");
+            WebElement submitButton = driver.findElement(By.xpath("//button[@type='submit']"));
+            submitButton.click();  // This will redirect to the w3schools link now
+
+            // Optional: If the redirection succeeds, you can validate the current URL
+            if (driver.getCurrentUrl().equals("https://www.w3schools.com/js/")) {
+                System.out.println("Redirection successful and test passed.");
+            } else {
+                System.out.println("Test failed. Redirection did not happen as expected.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            // Close the browser
+//            driver.quit();
+        }
+    }
+}
+
+html file:
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Page</title>
+</head>
+<body>
+    <h1 id="main-heading">Welcome to my Test Page</h1>
+     <form id="loginForm" action="https://www.w3schools.com/js/" method="GET">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
+
+3.c++ program
+
+package sabarees;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+public class sabaree4
+{
+public static void main(String[] args)
+{
+String cppExecutablePath ="C:\\TC\\BIN\\selenium.exe";
+try
+{
+ProcessBuilder processBuilder = new ProcessBuilder(cppExecutablePath);
+Process process = processBuilder.start();
+BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+String line;
+while((line = reader.readLine())!=null)
+{
+System.out.println("Output from C++ program:"+line);
+}
+int exitCode = process.waitFor();
+System.out.println("C++ program exited with code:"+exitCode);
+}
+catch(Exception e)
+{
+e.printStackTrace();
+}
+}
+}
+
+4.desktop count 
+
+package sabarees;
+
+import java.io.File;
+public class sabaree6
+{
+public static void main(String[] args)
+{
+String desktopPath = System.getProperty("user.home") + File.separator + "Desktop";
+File desktopDir = new File(desktopPath);
+if(desktopDir.exists() && desktopDir.isDirectory())
+{
+File[] desktopitems = desktopDir.listFiles();
+int numitems = desktopitems.length;
+System.out.println("Number of items on the desktop:"+numitems);
+}
+else
+{
+System.out.println("Desktop directory does not exist or is not a directory:");
+}
+}
+}
+
+5. sample web page
+
+package sabarees;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+public class sabaree7
+{
+public static void main(String[] args)
+{
+//set the path to the ChromeDriver executable
+System.setProperty("WebDriver.Chrome.Driver","C:\\chromedriver.exe");
+// TODO Auto-generated method stub
+WebDriver driver =new ChromeDriver();
+//open Google Website
+driver.get("https://google.com");
+//close the browser
+}
+}
+
+6. wiki pedia
+
+package sabarees;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import java.util.List;
+public class sabaree8 {
+public static void main(String[] args)
+{
+// Set the path to the ChromeDriver executable
+System.setProperty("webdriver.chrome.driver", "E:\\selenium\\eclipse new\\Eclipse\\chromedriver.exe");
+// Initialize ChromeDriver
+ChromeOptions options = new ChromeOptions();
+WebDriver driver = new ChromeDriver(options);
+try {
+// Open a webpage (Wikipedia homepage)
+driver.get("https://www.wikipedia.org");
+// Find all elements on the page
+List<WebElement>allElements =
+driver.findElements(By.xpath("//*")); // Count and print the number ofelements
+System.out.println("Total number of objects on the page: " +
+allElements.size());
+}
+finally
+{
+// Close the browser
+//driver.quit();
+} } }
+
+7.amazon 4 test case
+
+package sabarees;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class sabaree9 {
+    private WebDriver driver;
+
+    @BeforeClass
+    public void setUp() {
+        // Set path for chrome driver
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        driver = new ChromeDriver();
+    }
+    @Test
+    public void testValidBankLogin() {
+        driver.get("https://www.iobnet.co.in/ibanking/corplogin.do");
+        driver.findElement(By.id("User ID")).sendKeys("validUser");
+        driver.findElement(By.id("Password")).sendKeys("validPassword");
+        driver.findElement(By.id("loginButton")).click();
+
+        String expectedTitle = "Account Dashboard - Example Bank";
+        Assert.assertEquals(driver.getTitle(), expectedTitle);
+    }
+
+    // Test Case 2: Invalid Account Login for Example Bank
+    @Test
+    public void testInvalidBankLogin() {
+        driver.get("https://delight.dhanbank.in/ib-retail-web/tenant/index");
+        driver.findElement(By.id("username")).sendKeys("invalidUser");
+        driver.findElement(By.id("password")).sendKeys("wrongPassword");
+        driver.findElement(By.id("loginButton")).click();
+
+        WebElement errorMessage = driver.findElement(By.cssSelector(".error-message"));
+        Assert.assertEquals(errorMessage.getText(), "Invalid username or password.");
+    }
+
+    // Test Case 3: Product Search for Example E-Commerce
+    @Test
+    public void testProductSearch() {
+        driver.get("https://www.amazon.in/");
+        driver.findElement(By.id("searchBox")).sendKeys("Mobile");
+        driver.findElement(By.id("searchButton")).click();
+
+        WebElement productTitle = driver.findElement(By.cssSelector(".product-title"));
+        Assert.assertTrue(productTitle.getText().contains("Samsung Mobile"));
+    }
+
+    // Test Case 4: Add Product to Cart for Example E-Commerce
+    @Test
+    public void testAddProductToCart() {
+        driver.get("https://www.flipkart.com/products/laptop-HP");
+        driver.findElement(By.id("addToCartButton")).click();
+
+        WebElement notification = driver.findElement(By.cssSelector(".cart-notification"));
+        Assert.assertEquals(notification.getText(), "Laptop HP has been added to your cart.");
+    }
+
+    @AfterClass
+    public void tearDown() {
+      //  driver.quit();
+    }
+}
+
+
+
+8.ITEMS IN LIST & COMBO BOX
+
+
+package sabarees;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+public class sabaree10
+{
+    WebDriver driver;
+    @Before
+    public void setUp() 
+    {
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        driver = new ChromeDriver();
+        driver.get("https://the-internet.herokuapp.com/");
+    }
+    @Test	
+    public void testComboBox() 
+    {
+        driver.findElement(By.linkText("Dropdown")).click();
+        WebElement comboBox = driver.findElement(By.id("dropdown"));
+        Select select = new Select(comboBox);
+        select.selectByVisibleText("Option 1"); 
+        assertEquals("Option 1", select.getFirstSelectedOption().getText()); 
+    }
+    @Test
+    public void testList() 
+    {
+        driver.findElement(By.linkText("List")).click(); 
+        WebElement listItem = driver.findElement(By.xpath("//input[@type='checkbox'][1]"));
+        if (!listItem.isSelected()) 
+        {
+            listItem.click();
+        }
+        assertTrue(listItem.isSelected()); 
+    }
+    @After
+    public void tearDown()
+    {
+    }
+}
+
